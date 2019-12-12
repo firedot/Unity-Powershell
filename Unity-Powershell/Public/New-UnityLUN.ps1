@@ -72,6 +72,8 @@ Function New-UnityLUN {
     [TieringPolicyEnum]$fastVPParameters,
     [Parameter(Mandatory = $false,HelpMessage = 'Indicates whether to enable inline compression for the LUN. Default is True')]
     [bool]$isCompressionEnabled,
+    [Parameter(Mandatory = $false,HelpMessage = 'The HLU ID which should be assigned')]
+    [int16]$hluID,
 
     # snapScheduleParameters
     [Parameter(Mandatory = $false,HelpMessage = 'ID of a protection schedule to apply to the storage resource')]
@@ -143,6 +145,7 @@ Function New-UnityLUN {
                 $HostParam['id'] = $h
               $blockHostAccessParam['host'] = $HostParam
               $blockHostAccessParam['accessMask'] = $accessMask
+              $blockHostAccessParam['hlu'] = $hluID
             $hostAccess += $blockHostAccessParam
           }
 
